@@ -1,3 +1,6 @@
+import ArticleDetails from '@/components/custom/articles/ArticleDetails';
+import { articles } from '@/db';
+import { notFound } from 'next/navigation';
 import React from 'react';
 
 type NewsDetailsPageParams = {
@@ -6,14 +9,10 @@ type NewsDetailsPageParams = {
   };
 };
 
-function NewsDetailsPage({ params }: NewsDetailsPageParams) {
-  return (
-    <div className=' shadow-black shadow-md flex'>
-      <h1 className='text-center text-indigo-600 text-3xl border-b m-3 border-indigo-600 pb-5'>
-        News DetailsPage of article {params.newsId}
-      </h1>
-    </div>
-  );
+function ArticleDetailsPage({ params }: NewsDetailsPageParams) {
+  const article = articles.find((article) => article.id === params.newsId);
+  if (!article) return notFound();
+  return <ArticleDetails article={article} />;
 }
 
-export default NewsDetailsPage;
+export default ArticleDetailsPage;
