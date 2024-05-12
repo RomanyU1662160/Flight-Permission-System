@@ -1,6 +1,6 @@
-import { User } from '../types';
+import { Officer } from '../types';
 
-export const users: Array<User> = [
+export const users: Array<Officer> = [
   {
     user_type_id: 1,
     type_name: 'air_transport_officer',

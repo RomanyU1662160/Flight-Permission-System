@@ -1,14 +1,31 @@
-import { FlightPermission } from '../types';
+import { Permission } from '../types';
 
-export const flightPermissions: Array<FlightPermission> = [
+export const flightPermissions: Array<Permission> = [
   {
     permission_id: '1',
     agent_id: '2',
-    flight_type: 'charter',
-    departure_time: '2024-05-10T08:00:00',
-    arrival_time: '2024-05-10T12:00:00',
-    departure_location: 'Cairo',
-    arrival_location: 'Sharm El Sheikh',
+    flight_id: '1',
+    status: 'approved',
+    officer_id: '1',
+    submitted_at: '2021-09-01T00:00:00Z',
+    last_update_at: '2021-09-01T00:00:00Z',
+  },
+  {
+    permission_id: '2',
+    agent_id: '3',
+    flight_id: '2',
     status: 'pending',
+    officer_id: '1',
+    submitted_at: '2021-09-01T00:00:00Z',
+    last_update_at: '2021-09-01T00:00:00Z',
+  },
+  {
+    permission_id: '3',
+    agent_id: '1',
+    flight_id: '3',
+    status: 'rejected',
+    officer_id: '1',
+    submitted_at: '2021-09-01T00:00:00Z',
+    last_update_at: '2021-09-01T00:00:00Z',
   },
 ];
