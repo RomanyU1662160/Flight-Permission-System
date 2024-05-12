@@ -1,4 +1,4 @@
-import { Article } from './components/custom/articles/types';
+import { Article } from '../components/custom/articles/types';
 
 export const articles: Article[] = [
   {

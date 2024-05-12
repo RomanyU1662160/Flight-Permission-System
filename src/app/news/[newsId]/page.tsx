@@ -1,5 +1,5 @@
 import ArticleDetails from '@/components/custom/articles/ArticleDetails';
-import { articles } from '@/db';
+import { articles } from '@/DB/mockNewsDB';
 import { notFound } from 'next/navigation';
 import React from 'react';
 

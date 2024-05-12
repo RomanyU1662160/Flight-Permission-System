@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ChevronRightIcon } from '@radix-ui/react-icons';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
-import { articles } from '@/db';
+import { articles } from '@/DB/mockNewsDB';
 import { notFound } from 'next/navigation';
 
 type ArticleItemProps = {

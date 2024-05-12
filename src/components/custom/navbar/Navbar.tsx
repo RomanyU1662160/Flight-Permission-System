@@ -12,7 +12,7 @@ import {
   NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { navigationLinks } from './navComponents';
+import { navigationLinks } from './navbarLinks';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Image from 'next/image';
@@ -26,7 +26,7 @@ function Navbar() {
           <Link href='/' legacyBehavior passHref>
             <Image
               className='cursor-pointer rounded-full mr-5'
-              src='/logo3.jpeg'
+              src='/logo5.jpeg'
               alt='logo'
               width={80}
               height={100}
@@ -38,7 +38,7 @@ function Navbar() {
               if (link.isDirectLink) {
                 return (
                   <NavigationMenuItem key={link.title}>
-                    <Link href='/news' legacyBehavior passHref>
+                    <Link href={link.href} legacyBehavior passHref>
                       <NavigationMenuLink
                         className={navigationMenuTriggerStyle()}
                       >

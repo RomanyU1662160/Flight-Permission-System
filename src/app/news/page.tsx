@@ -1,6 +1,6 @@
 import ArticlesList from '@/components/custom/articles/ArticlesList';
 import { Article } from '@/components/custom/articles/types';
-import { articles } from '@/db';
+import { articles } from '@/DB/mockNewsDB';
 import React from 'react';
 
 const getArticles = async () => {

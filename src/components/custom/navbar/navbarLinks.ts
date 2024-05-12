@@ -8,11 +8,6 @@ type NavLink = {
 
 export const navigationLinks: Array<NavLink> = [
   {
-    title: 'News',
-    href: '/news',
-    isDirectLink: true,
-  },
-  {
     title: 'Getting started',
     href: '/',
     isDirectLink: false,
@@ -87,5 +82,15 @@ export const navigationLinks: Array<NavLink> = [
           'Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.',
       },
     ],
+  },
+  {
+    title: 'Dashboard',
+    href: '/dashboard',
+    isDirectLink: true,
+  },
+  {
+    title: 'News',
+    href: '/news',
+    isDirectLink: true,
   },
 ];
