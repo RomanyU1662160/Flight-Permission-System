@@ -22,8 +22,8 @@ export type User = {
   user_name: string;
   user_email: string;
   user_role: UserType;
-  agent_id: string;
-  airline_id: string;
+  agent_id?: string;
+  airline_id?: string;
 };
 
 export type Aircraft = {
@@ -65,6 +65,7 @@ export type Country = {
 
 export type Flight = {
   flight_id: string;
+  flight_number: string;
   flight_type: FlightType;
   airline_id: string;
   aircraft_id: string;

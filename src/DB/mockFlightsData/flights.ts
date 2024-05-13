@@ -3,6 +3,7 @@ import { Flight } from '../types';
 export const flights: Array<Flight> = [
   {
     flight_id: '1',
+    flight_number: '578',
     flight_type: 'charter',
     airline_id: '1',
     aircraft_id: '1',
@@ -16,6 +17,7 @@ export const flights: Array<Flight> = [
   },
   {
     flight_id: '2',
+    flight_number: '579',
     flight_type: 'overflight',
     airline_id: '2',
     aircraft_id: '2',
@@ -29,6 +31,7 @@ export const flights: Array<Flight> = [
   },
   {
     flight_id: '3',
+    flight_number: '580',
     flight_type: 'tech-landing',
     airline_id: '3',
     aircraft_id: '3',

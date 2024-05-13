@@ -93,4 +93,9 @@ export const navigationLinks: Array<NavLink> = [
     href: '/news',
     isDirectLink: true,
   },
+  {
+    title: 'flights',
+    href: '/flights',
+    isDirectLink: true,
+  },
 ];
