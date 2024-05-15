@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckCircle } from 'lucide-react';
 
 type FlightDetailsLayoutProps = {
   permissionCard: React.ReactNode;
@@ -18,7 +19,9 @@ function FlightDetailsLayout({
   return (
     <>
       {children}
-      <div className='grid  gap-10 p-3'>{flightCard}</div>
+      <div className='grid grid-cols-2 gap-10 p-3'>
+        {flightCard} {airlineCard} {permissionCard} {officerCard}
+      </div>
     </>
   );
 }

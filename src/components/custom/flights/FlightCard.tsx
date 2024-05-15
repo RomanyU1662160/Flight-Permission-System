@@ -17,69 +17,102 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Agent, Airline, Flight, Permission, Officer } from '@/DB/types';
+import { FullFlightData } from '@/DB/types';
 import { CheckCircle } from 'lucide-react';
+import { getCountryById } from '@/DB/helpers';
 type FlightItemProps = {
-  flight: Flight;
+  flightData: FullFlightData;
 };
 
-function FlightCard({ flight }: FlightItemProps) {
+function FlightCard({ flightData }: FlightItemProps) {
+  const {
+    flight,
+    callSign,
+    airline,
+    departureAirport,
+    departureCity,
+    arrivalAirport,
+    arrivalCity,
+    departureCountry,
+    arrivalCountry,
+  } = flightData;
   return (
     <>
-      <div className='flex justify-center gap-3 items-baseline'>
-        <h1 className='text-center text-3xl text-gray-800 font-bold mt-10 mb-5'>
-          Details of flight {flight?.flight_id}
-        </h1>
-        <CheckCircle className='text-green-500' size={'40px'} />
-      </div>
-      <div className='grid grid-cols-3 grid-flow-col gap-10 p-3'>
-        <Card className='shadow-lg'>
-          <CardHeader>
-            <CardTitle className='text-3xl text-blue-300 text-center shadow-sm '>
-              Flight Details
-            </CardTitle>
-            <CardDescription className='flex justify-between'>
-              <span className='font-bold '>Origin:</span>
-              <span> {flight?.departure_airport_id} </span>
-              <span className='font-bold'>Destination: </span>
-              <span>{flight?.arrival_airport_id}</span>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table className=''>
-              <TableCaption>
-                Details of flight {flight?.flight_number}
-              </TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className='w-[100px]'>Call Sign</TableHead>
-                  <TableHead className='text-center'>Purpose</TableHead>
-                  <TableHead className='text-center'>Origin</TableHead>
-                  <TableHead className='text-center'>Destination</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell className='font-medium'>
-                    {flight?.flight_number}
-                  </TableCell>
+      <Card className='shadow-lg bg-slate-200'>
+        <CardHeader>
+          <CardTitle className='text-3xl text-blue-300 text-center shadow-sm '>
+            Flight Details for {callSign}
+          </CardTitle>
+          <CardDescription className='flex justify-between'>
+            <span className='font-bold '>Route:</span>
+            <span>
+              {departureAirport?.name}/{arrivalAirport?.name}{' '}
+            </span>
+            <span className='font-bold'>Purpose: </span>
+            <span>{flight?.flight_type}</span>
+          </CardDescription>
+          <CardDescription className='flex justify-between'>
+            <span className='font-bold '>Dep date:</span>
+            <span>{flight?.departure_time}</span>
+            <span className='font-bold'>Arr Date: </span>
+            <span>{flight?.arrival_time}</span>
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Table className=''>
+            <TableHeader>
+              <TableRow className='border-neutral-950'>
+                <TableHead className='w-[100px]'>Call Sign</TableHead>
+                <TableHead className='text-start'>Purpose</TableHead>
+                <TableHead className='text-start'>Origin</TableHead>
+                <TableHead className='text-start'>Destination</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell className='font-medium'>{callSign}</TableCell>
 
-                  <TableCell>{flight?.flight_type}</TableCell>
-                  <TableCell className='text-right'>
-                    {flight?.departure_airport_id}
-                  </TableCell>
-                  <TableCell className='text-right'>
-                    {flight?.arrival_airport_id}
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </CardContent>
-          <CardFooter>
-            <Button variant={'outline'}>View permission details</Button>
-          </CardFooter>
-        </Card>
-      </div>
+                <TableCell>{flight?.flight_type}</TableCell>
+                <TableCell className='text-start'>
+                  {departureAirport?.name}
+                </TableCell>
+                <TableCell className='text-start'>
+                  {arrivalAirport?.name}
+                </TableCell>
+              </TableRow>
+              <TableRow className='border'>
+                <TableCell className='font-medium'>
+                  {airline?.airline_name}
+                </TableCell>
+
+                <TableCell>{}</TableCell>
+                <TableCell className='text-start'>
+                  {departureCity?.city_name}
+                </TableCell>
+                <TableCell className='text-start'>
+                  {arrivalCity?.city_name}
+                </TableCell>
+              </TableRow>
+              <TableRow className='border'>
+                <TableCell className='font-medium'>
+                  {getCountryById(airline?.country_id as string)?.country_name}
+                </TableCell>
+
+                <TableCell>{}</TableCell>
+                <TableCell className='text-start'>
+                  {departureCountry?.country_name}
+                </TableCell>
+                <TableCell className='text-start'>
+                  {arrivalCountry?.country_name}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </CardContent>
+        <CardFooter>
+          <Button variant={'outline'}>View permission details</Button>
+        </CardFooter>
+      </Card>
     </>
   );
 }

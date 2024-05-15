@@ -1,0 +1,11 @@
+export { agents } from './agents';
+export { airlines } from './airlines';
+export { airports } from './airports';
+export { flights } from './flights';
+export { permissions } from './permissions';
+export { users } from './users';
+export { comments } from './comments';
+export { countries } from './countries';
+export { officers } from './officers';
+export { assignments } from './assignments';
+export { cities } from './cities';

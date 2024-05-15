@@ -1,8 +1,8 @@
 import { Officer } from '../types';
 
-const officers: Array<Omit<Officer, 'officer_password'>> = [
+export const officers: Array<Omit<Officer, 'officer_password'>> = [
   {
-    officer_id: '1',
+    id: '1',
     login_id: 'officer1',
     type_name: 'Admin',
     first_name: 'John',
@@ -10,7 +10,7 @@ const officers: Array<Omit<Officer, 'officer_password'>> = [
     officer_email: 'officer1@test.com',
   },
   {
-    officer_id: '2',
+    id: '2',
     login_id: 'officer2',
     type_name: 'Admin',
     first_name: 'Jane',
@@ -18,7 +18,7 @@ const officers: Array<Omit<Officer, 'officer_password'>> = [
     officer_email: 'officer2@test.com',
   },
   {
-    officer_id: '3',
+    id: '3',
     login_id: 'officer3',
     type_name: 'Admin',
     first_name: 'Michael',

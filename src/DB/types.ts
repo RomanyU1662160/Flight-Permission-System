@@ -1,5 +1,5 @@
 export type Officer = {
-  officer_id: string;
+  id: string;
   login_id: string;
   type_name: string;
   first_name: string;
@@ -9,8 +9,8 @@ export type Officer = {
 };
 
 export type Agent = {
-  agent_id: string;
-  login_id: string;
+  id: string;
+  loginId: string;
   agent_name: string;
   agent_email: string;
   agent_phone?: string;
@@ -46,25 +46,25 @@ export type Airline = {
 };
 
 export type Airport = {
-  airport_id: string;
-  airport_name: string;
-  airport_city_id: string;
+  id: string;
+  name: string;
+  cityId: string;
   airport_type?: AirportType;
 };
 
 export type City = {
-  city_id: string;
+  id: string;
   city_name: string;
-  country_id: string;
+  countryId: string;
 };
 
 export type Country = {
-  country_id: string;
+  id: string;
   country_name: string;
 };
 
 export type Flight = {
-  flight_id: string;
+  id: string;
   flight_number: string;
   flight_type: FlightType;
   airline_id: string;
@@ -91,34 +91,49 @@ export type ScheduleFlight = {
 };
 
 export type Permission = {
-  permission_id: string;
-  agent_id: string;
-  flight_id: string;
-  officer_id: string;
-  status: FlightStatus;
+  id: string;
+  agentId: string;
+  flightId: string;
+  officerId: string;
+  status: PermissionStatus;
   submitted_at: string;
   last_update_at: string;
 };
 
 export type Comment = {
-  comment_id: string;
+  id: string;
   comment: string;
-  permission_id: string;
-  commenter_id: string;
+  permissionId: string;
+  commenterId: string;
   timestamp: string;
 };
 
 export type Assignment = {
-  assignment_id: string;
-  permission_id: string;
+  id: string;
+  permissionId: string;
   assigned_to: string;
   assigned_by: string;
   timestamp: string;
 };
 
+export type FullFlightData = {
+  flight: Flight | undefined;
+  callSign: string;
+  permission: Permission | undefined;
+  agent: Agent | undefined;
+  officer: Omit<Officer, 'officer_password'> | undefined;
+  airline: Airline | undefined;
+  departureAirport: Airport | undefined;
+  departureCity: City | undefined;
+  arrivalAirport: Airport | undefined;
+  arrivalCity: City | undefined;
+  departureCountry: Country | undefined;
+  arrivalCountry: Country | undefined;
+};
+
 export type FlightType = 'charter' | 'overflight' | 'tech-landing';
 
-export type FlightStatus = 'pending' | 'approved' | 'rejected';
+export type PermissionStatus = 'pending' | 'approved' | 'rejected';
 
 export type AirportType = 'international' | 'domestic';
 
