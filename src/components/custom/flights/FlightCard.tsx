@@ -10,7 +10,6 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -18,8 +17,8 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { FullFlightData } from '@/DB/types';
-import { CheckCircle } from 'lucide-react';
-import { getCountryById } from '@/DB/helpers';
+import { getCountryById } from '@/DB/helpers/flightDetails';
+
 type FlightItemProps = {
   flightData: FullFlightData;
 };
@@ -49,7 +48,7 @@ function FlightCard({ flightData }: FlightItemProps) {
               {departureAirport?.name}/{arrivalAirport?.name}{' '}
             </span>
             <span className='font-bold'>Purpose: </span>
-            <span>{flight?.flight_type}</span>
+            <span>{flight?.flight_purpose}</span>
           </CardDescription>
           <CardDescription className='flex justify-between'>
             <span className='font-bold '>Dep date:</span>
@@ -72,7 +71,7 @@ function FlightCard({ flightData }: FlightItemProps) {
               <TableRow>
                 <TableCell className='font-medium'>{callSign}</TableCell>
 
-                <TableCell>{flight?.flight_type}</TableCell>
+                <TableCell>{flight?.flight_purpose}</TableCell>
                 <TableCell className='text-start'>
                   {departureAirport?.name}
                 </TableCell>

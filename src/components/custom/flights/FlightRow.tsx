@@ -44,7 +44,7 @@ function FlightRow({ flightData }: FlightRowProps) {
       <TableCell className='font-extrabold  text-center'>{callSign}</TableCell>
       <TableCell className='  text-center'>{airline?.airline_name}</TableCell>
       <TableCell className='text-center'>
-        {flight?.flight_type ?? 'N/A'}
+        {flight?.flight_purpose ?? 'N/A'} {flight?.isSchedule && '(Scheduled)'}
       </TableCell>
       <TableCell className='text-center text-wrap'>
         {departureCity?.city_name ?? 'N/A'} (

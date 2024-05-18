@@ -77,7 +77,13 @@ export const airports: Airport[] = [
   {
     id: '13',
     name: 'Khartoum Airport',
-    cityId: '13',
+    cityId: '13', //Khartoum
+    airport_type: 'international',
+  },
+  {
+    id: '14',
+    name: 'Frankfurt Airport',
+    cityId: '29', //Frankfurt
     airport_type: 'international',
   },
 ];

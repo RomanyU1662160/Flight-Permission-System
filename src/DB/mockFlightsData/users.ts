@@ -19,6 +19,6 @@ export const users: Array<User> = [
     user_name: 'user3',
     user_email: 'user3@test.com',
     user_role: 'airline',
-    airline_id: '1',
+    airlineId: '1',
   },
 ];

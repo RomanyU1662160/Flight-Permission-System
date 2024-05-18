@@ -25,7 +25,7 @@ function OfficerCard({ officer }: OfficerCardProps) {
           <CardDescription className='flex justify-between'>
             <span className='font-bold '>Login ID:</span>
             <span> {officer?.login_id} </span>
-            <span className='font-bold'>Type: </span>
+            <span className='font-bold'>Purpose: </span>
             <span>{officer?.type_name}</span>
           </CardDescription>
         </CardHeader>

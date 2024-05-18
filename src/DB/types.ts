@@ -23,21 +23,21 @@ export type User = {
   user_email: string;
   user_role: UserType;
   agent_id?: string;
-  airline_id?: string;
+  airlineId?: string;
 };
 
 export type Aircraft = {
-  aircraft_id: string;
-  aircraft_type: string;
-  aircraft_registration: string;
-  aircraft_model?: string;
-  aircraft_capacity?: number;
-  aircraft_owner?: string;
-  airline_id: string;
+  id: string;
+  type: string;
+  registration: string;
+  model?: string;
+  capacity?: number;
+  owner?: string;
+  airlineId: string;
 };
 
 export type Airline = {
-  airline_id: string;
+  airlineId: string;
   airline_name: string;
   icao_code: string;
   iata_code: string;
@@ -66,9 +66,9 @@ export type Country = {
 export type Flight = {
   id: string;
   flight_number: string;
-  flight_type: FlightType;
-  airline_id: string;
-  aircraft_id: string;
+  flight_purpose: FlightType;
+  airlineId: string;
+  aircraftId: string;
   departure_date: string;
   arrival_date: string;
   departure_time: string;
@@ -76,12 +76,14 @@ export type Flight = {
   departure_airport_id: string;
   arrival_airport_id: string;
   isSchedule: boolean;
+  callSign: string;
+  slug: string;
 };
 
 export type ScheduleFlight = {
   flight_id: string;
-  flight_type: FlightType;
-  airline_id: string;
+  flight_purpose: FlightType;
+  airlineId: string;
   aircraft_id: string;
   start_date: string;
   end_date: string;
@@ -131,7 +133,19 @@ export type FullFlightData = {
   arrivalCountry: Country | undefined;
 };
 
-export type FlightType = 'charter' | 'overflight' | 'tech-landing';
+export type FlightType =
+  | 'charter'
+  | 'overflight'
+  | 'tech-landing'
+  | 'emergency'
+  | 'cargo'
+  | 'passenger'
+  | 'repatriation'
+  | 'medical'
+  | 'positioning'
+  | 'training'
+  | 'test'
+  | 'other';
 
 export type PermissionStatus = 'pending' | 'approved' | 'rejected';
 

@@ -1,20 +1,12 @@
-import { getFullFlightData } from '@/DB/helpers';
+import { prepareFullFlightsData } from '@/DB/helpers/flightDetails';
 import { flights } from '@/DB/mockFlightsData';
-import { FullFlightData } from '@/DB/types';
+import { Flight, FullFlightData } from '@/DB/types';
 import FlightsTable from '@/components/custom/flights/FlightsTable';
 import React from 'react';
 
-const prepareFlightsData = () => {
-  const flightsDataArray: Array<FullFlightData> = [];
-  flights.map((flight) => {
-    const flightData = getFullFlightData(flight.id);
-    flightsDataArray.push(flightData);
-  });
-  return flightsDataArray;
-};
 const tableTitle = 'Flights';
 function FlightsPage() {
-  const flightsData = prepareFlightsData();
+  const flightsData = prepareFullFlightsData(flights);
   return (
     <>
       <span className='text-muted-foreground'>To add search functionality</span>

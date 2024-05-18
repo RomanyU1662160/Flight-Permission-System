@@ -1,4 +1,4 @@
-import * as data from '../DB/mockFlightsData';
+import * as data from '../mockFlightsData';
 import {
   Agent,
   Airline,
@@ -9,7 +9,7 @@ import {
   FullFlightData,
   Officer,
   Permission,
-} from './types';
+} from '../types';
 
 export const getFlights = () => {
   return data.flights;
@@ -43,13 +43,13 @@ export const getAirlines = () => {
 };
 
 export const getAirlineById = (id: string) => {
-  return data.airlines.find((airline) => airline.airline_id === id);
+  return data.airlines.find((airline) => airline.airlineId === id);
 };
 
 export const getAirlineByFlightId = (id: string) => {
   const flight = getFlightById(id);
   return data.airlines.find(
-    (airline) => airline.airline_id === flight?.airline_id
+    (airline) => airline.airlineId === flight?.airlineId
   );
 };
 
@@ -83,7 +83,7 @@ export const getPermissionById = (id: string) => {
   return data.permissions.find((permission) => permission.id === id);
 };
 export const getPermissionByFlightId = (id: string) => {
-  return data.permissions.find((permission) => permission.id === id);
+  return data.permissions.find((permission) => permission.flightId === id);
 };
 
 /* officers helpers */
@@ -132,7 +132,7 @@ export const buildFlightCallSign = (flight: Flight, airline: Airline) => {
   } else if (airline?.iata_code) {
     return `${airline?.iata_code}${flight?.flight_number}`;
   } else {
-    return `${airline?.airline_id}${flight?.flight_number}`;
+    return `${airline?.airlineId}${flight?.flight_number}`;
   }
 };
 
@@ -152,7 +152,7 @@ export const getFullFlightData = (id: string): FullFlightData => {
   permission = getPermissionByFlightId(id);
   const agent = getAgentByFlightId(id);
   const officer = getOfficerByFlightId(id);
-  airline = getAirlineById(flight?.airline_id as string);
+  airline = getAirlineById(flight?.airlineId as string);
 
   callSign = buildFlightCallSign(flight as Flight, airline as Airline);
 
@@ -181,4 +181,13 @@ export const getFullFlightData = (id: string): FullFlightData => {
     departureCountry,
     arrivalCountry,
   };
+};
+
+export const prepareFullFlightsData = (flights: Flight[]) => {
+  const flightsDataArray: Array<FullFlightData> = [];
+  flights.map((flight) => {
+    const flightData = getFullFlightData(flight.id);
+    flightsDataArray.push(flightData);
+  });
+  return flightsDataArray;
 };

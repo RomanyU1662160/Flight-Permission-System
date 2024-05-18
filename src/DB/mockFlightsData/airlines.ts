@@ -2,7 +2,7 @@ import { Airline } from '../types';
 
 export const airlines: Array<Airline> = [
   {
-    airline_id: '1',
+    airlineId: '1',
     airline_name: 'EgyptAir',
     icao_code: 'MSR',
     iata_code: 'MS',
@@ -10,7 +10,7 @@ export const airlines: Array<Airline> = [
     country_id: '1',
   },
   {
-    airline_id: '2',
+    airlineId: '2',
     airline_name: 'British Airways',
     icao_code: 'BAW',
     iata_code: 'BA',
@@ -18,7 +18,7 @@ export const airlines: Array<Airline> = [
     country_id: '3',
   },
   {
-    airline_id: '3',
+    airlineId: '3',
     airline_name: 'Lufthansa',
     icao_code: 'DLH',
     iata_code: 'LH',

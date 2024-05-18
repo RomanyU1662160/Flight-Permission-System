@@ -32,7 +32,7 @@ function FlightsTable({ flightsData, tableTitle }: FlightsTableProps) {
               <TableHead className=' text-center text-bold '>
                 Operator
               </TableHead>
-              <TableHead className='text-center  text-bold '>Type</TableHead>
+              <TableHead className='text-center  text-bold '>Purpose</TableHead>
               <TableHead className='text-center  text-bold'>Origin</TableHead>
               <TableHead className='text-center  text-bold'>
                 Destination
