@@ -30,10 +30,11 @@ export type Aircraft = {
   id: string;
   type: string;
   registration: string;
+  isPrivate: boolean;
   model?: string;
   capacity?: number;
   owner?: string;
-  airlineId: string;
+  airlineId?: string;
 };
 
 export type Airline = {
@@ -131,6 +132,7 @@ export type FullFlightData = {
   arrivalCity: City | undefined;
   departureCountry: Country | undefined;
   arrivalCountry: Country | undefined;
+  aircraft: Aircraft | undefined;
 };
 
 export type FlightType =

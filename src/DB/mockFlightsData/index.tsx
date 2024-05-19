@@ -9,3 +9,4 @@ export { countries } from './countries';
 export { officers } from './officers';
 export { assignments } from './assignments';
 export { cities } from './cities';
+export { aircrafts } from './aircrafts';

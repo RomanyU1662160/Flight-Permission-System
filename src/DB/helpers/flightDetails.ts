@@ -1,18 +1,39 @@
+import { Column } from '@/components/custom/flights-table/Columns';
 import * as data from '../mockFlightsData';
 import {
   Agent,
+  Aircraft,
   Airline,
   Airport,
   City,
   Country,
   Flight,
+  FlightType,
   FullFlightData,
   Officer,
   Permission,
+  PermissionStatus,
 } from '../types';
 
 export const getFlights = () => {
   return data.flights;
+};
+
+// aircrafts helpers
+export const getAircrafts = () => {
+  return data.aircrafts;
+};
+
+export const getAircraftById = (id: string) => {
+  return data.aircrafts.find((aircraft) => aircraft.id === id);
+};
+
+export const getAircraftByFlightId = (flightId: string) => {
+  return data.aircrafts.find((aircraft) => aircraft.airlineId === flightId);
+};
+
+export const getAirLineByAircraftId = (aircraftId: string) => {
+  return data.airlines.find((airline) => airline.airlineId === aircraftId);
 };
 
 /*  airport helpers  */
@@ -147,12 +168,15 @@ export const getFullFlightData = (id: string): FullFlightData => {
   let arrivalCountry: Country | undefined;
   let permission: Permission | undefined;
   let callSign: string | undefined;
+  let aircraft: Aircraft | undefined;
 
   flight = getFlightById(id);
   permission = getPermissionByFlightId(id);
   const agent = getAgentByFlightId(id);
   const officer = getOfficerByFlightId(id);
   airline = getAirlineById(flight?.airlineId as string);
+
+  aircraft = getAircraftByFlightId(flight?.id as string);
 
   callSign = buildFlightCallSign(flight as Flight, airline as Airline);
 
@@ -170,6 +194,7 @@ export const getFullFlightData = (id: string): FullFlightData => {
   return {
     flight,
     callSign,
+    aircraft,
     permission,
     agent,
     officer,
@@ -190,4 +215,28 @@ export const prepareFullFlightsData = (flights: Flight[]) => {
     flightsDataArray.push(flightData);
   });
   return flightsDataArray;
+};
+
+export const prepareFlightsForDataTable = (
+  fullFlightsData: FullFlightData[]
+): Column[] => {
+  const columns: Column[] = [];
+  fullFlightsData.map((fullFlightData) => {
+    const columnData: Column = {
+      flight_number: fullFlightData.callSign as string,
+      AC_type: fullFlightData.aircraft?.type as string,
+      AC_registration: fullFlightData.aircraft?.registration as string,
+      operator: fullFlightData.airline?.airline_name as string,
+      purpose: fullFlightData.flight?.flight_purpose as FlightType,
+      origin: fullFlightData.departureAirport?.name as string,
+      destination: fullFlightData.arrivalAirport?.name as string,
+      departure: fullFlightData.flight?.departure_time as string,
+      arrival: fullFlightData.flight?.arrival_time as string,
+      status: fullFlightData.permission?.status as PermissionStatus,
+      agent: fullFlightData.agent?.agent_name as string,
+      officer: fullFlightData.officer?.first_name as string,
+    };
+    columns.push(columnData);
+  });
+  return columns;
 };

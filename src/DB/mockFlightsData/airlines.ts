@@ -25,4 +25,22 @@ export const airlines: Array<Airline> = [
     agent_id: '2',
     country_id: '4',
   },
+
+  {
+    airlineId: '4',
+    airline_name: 'Emirates',
+    icao_code: 'UAE',
+    iata_code: 'EK',
+    agent_id: '2',
+    country_id: '5',
+  },
+
+  {
+    airlineId: '5',
+    airline_name: 'Air France',
+    icao_code: 'AFR',
+    iata_code: 'AF',
+    agent_id: '3',
+    country_id: '6',
+  },
 ];

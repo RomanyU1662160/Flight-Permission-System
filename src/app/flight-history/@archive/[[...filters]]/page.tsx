@@ -24,7 +24,6 @@ function FlightHistoryArchivePage({ params }: FlightHistoryArchivePageProps) {
     flightSlug,
     yearSlug
   );
-  console.log('flightsByYear:::>>>', flightsByYear);
 
   const archivedFlightsData = prepareFullFlightsData(flightsByYear);
   const tableTitle = `Previous ${archivedFlightsData[0]?.callSign} flights operated on year ${yearSlug}`;

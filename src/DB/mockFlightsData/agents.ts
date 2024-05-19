@@ -17,4 +17,12 @@ export const agents: Array<Agent> = [
     agent_phone: '123456789',
     agent_address: 'Agent 2 Address',
   },
+  {
+    id: '3',
+    loginId: '3',
+    agent_name: 'Agent 3',
+    agent_email: 'agent3@test.com',
+    agent_phone: '123456789',
+    agent_address: 'Agent 3 Address',
+  },
 ];
