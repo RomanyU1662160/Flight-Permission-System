@@ -1,12 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
+  getSortedRowModel,
+  SortingState,
 } from '@tanstack/react-table';
 import {
   Table,
@@ -28,18 +30,32 @@ function FlightsDataTable<TData, TValue>({
   columns,
   data,
 }: FlightsTableProps<TData, TValue>) {
+  const [sorting, setSorting] = useState<SortingState>([]);
+
+  /* 
+  create table instance with the useReactTable custom hook
+  and configure pagination, sorting and core row model
+  */
   const table = useReactTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel({
-      initialSync: true,
-    }),
     initialState: {
       pagination: {
         pageIndex: 0, //start at first page
         pageSize: 4, //show 4 rows per page as default, look select in PaginationButtons component
       },
+    },
+    // add core row model
+    getCoreRowModel: getCoreRowModel(),
+    // add pagination
+    getPaginationRowModel: getPaginationRowModel({
+      initialSync: true,
+    }),
+    //add sorting
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
+    state: {
+      sorting: sorting,
     },
   });
 

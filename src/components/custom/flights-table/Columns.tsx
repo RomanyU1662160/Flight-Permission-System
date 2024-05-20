@@ -8,6 +8,7 @@ import {
   PlaneTakeoff,
   X,
   MoreHorizontal,
+  ArrowUpDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
+import SortButton from './SortButton';
 
 export interface Column {
   id: string;
@@ -38,82 +40,72 @@ export interface Column {
 
 export const columns: ColumnDef<Column>[] = [
   {
-    header: () => (
-      <div className='text-blue-500 font-extrabold'>Flight No.</div>
-    ),
     accessorKey: 'flight_number',
+    header: ({ column }) => <SortButton column={column} title='Flight No' />,
+    sortDescFirst: true,
+    sortingFn: 'alphanumeric',
   },
   {
-    header: () => <div className='text-blue-500 font-extrabold'>Operator</div>,
     accessorKey: 'operator',
+    header: ({ column }) => <SortButton column={column} title='Operator' />,
   },
   {
-    header: () => <div className='text-blue-500 font-extrabold'>A/C Reg</div>,
     accessorKey: 'AC_registration',
+    header: ({ column }) => <SortButton column={column} title='A/C Reg' />,
   },
   {
-    header: () => <div className='text-blue-500 font-extrabold'>A/C Type</div>,
     accessorKey: 'AC_type',
+    header: () => <div className='text-blue-500 font-extrabold'>A/C Type</div>,
   },
 
   {
-    header: () => <div className='text-blue-500 font-extrabold'>Purpose</div>,
     accessorKey: 'purpose',
+    header: ({ column }) => <SortButton column={column} title='Purpose' />,
   },
   {
-    header: () => (
-      <div className='text-blue-500 font-extrabold flex gap-4 items-center'>
-        <span>Origin </span>
-        <span>
-          <PlaneTakeoff size={24} />
-        </span>
-      </div>
-    ),
     accessorKey: 'origin',
+
+    header: ({ column }) => (
+      <SortButton column={column} title='Origin'>
+        <PlaneTakeoff size={24} className='ml-1' />
+      </SortButton>
+    ),
   },
   {
-    header: () => (
-      <div className='text-blue-500 font-extrabold flex gap-4 items-center'>
-        <span>ETD </span>{' '}
-      </div>
-    ),
     accessorKey: 'departure',
+    header: ({ column }) => <SortButton column={column} title='ETD' />,
+    sortingFn: 'datetime',
   },
   {
-    header: () => (
-      <div className='text-blue-500 font-extrabold flex gap-4 items-center'>
-        <span>Destination </span>{' '}
-        <span>
-          <PlaneLandingIcon size={24} />
-        </span>
-      </div>
-    ),
     accessorKey: 'destination',
+
+    header: ({ column }) => (
+      <SortButton column={column} title='Destination'>
+        <PlaneLandingIcon size={24} className='ml-1' />
+      </SortButton>
+    ),
   },
 
   {
-    header: () => (
-      <div className='text-blue-500 font-extrabold flex gap-4 items-center'>
-        <span>ETA </span>{' '}
-      </div>
-    ),
     accessorKey: 'arrival',
+    header: ({ column }) => <SortButton column={column} title='ETA' />,
   },
   {
-    header: () => <div className='text-blue-500 font-extrabold'>Status</div>,
     accessorKey: 'status',
+    header: ({ column }) => <SortButton column={column} title='status' />,
+    sortUndefined: 'last',
     cell: ({ row }) => {
       const status = row.getValue('status');
       if (status === 'approved') {
         return (
-          <div className='text-green-600 flex gap-5'>
+          <div className='text-green-600 flex gap-2'>
             <CheckCheck size={24} /> {status}
           </div>
         );
       }
       if (status === 'pending') {
         return (
-          <div className='text-amber-700 flex gap-5'>
+          <div className='text-amber-700 flex gap-2'>
             <Clock7 size={24} />
             {status}
           </div>
@@ -121,7 +113,7 @@ export const columns: ColumnDef<Column>[] = [
       }
       if (status === 'rejected') {
         return (
-          <div className='text-red-600 flex font-bold gap-5'>
+          <div className='text-red-600 flex font-bold gap-2'>
             <X size={24} /> {status}
           </div>
         );
@@ -129,12 +121,13 @@ export const columns: ColumnDef<Column>[] = [
     },
   },
   {
-    header: () => <div className='text-blue-500 font-extrabold'>Agent</div>,
     accessorKey: 'agent',
+    header: ({ column }) => <SortButton column={column} title='Agent' />,
+    sortUndefined: 'first',
   },
   {
-    header: () => <div className='text-blue-500 font-extrabold'>Officer</div>,
     accessorKey: 'officer',
+    header: ({ column }) => <SortButton column={column} title='Officer' />,
   },
   {
     id: 'actions',
