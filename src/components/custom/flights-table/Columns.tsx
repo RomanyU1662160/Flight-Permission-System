@@ -3,16 +3,25 @@ import { FlightType, PermissionStatus } from '@/DB/types';
 import { ColumnDef } from '@tanstack/react-table';
 import {
   CheckCheck,
-  CircleDashed,
   Clock7,
-  Divide,
-  PlaneLanding,
   PlaneLandingIcon,
   PlaneTakeoff,
   X,
+  MoreHorizontal,
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
 
 export interface Column {
+  id: string;
   flight_number: string;
   AC_type: string;
   AC_registration: string;
@@ -97,14 +106,14 @@ export const columns: ColumnDef<Column>[] = [
       const status = row.getValue('status');
       if (status === 'approved') {
         return (
-          <div className='text-green-600 flex'>
+          <div className='text-green-600 flex gap-5'>
             <CheckCheck size={24} /> {status}
           </div>
         );
       }
       if (status === 'pending') {
         return (
-          <div className='text-amber-700 flex gab-4'>
+          <div className='text-amber-700 flex gap-5'>
             <Clock7 size={24} />
             {status}
           </div>
@@ -112,7 +121,7 @@ export const columns: ColumnDef<Column>[] = [
       }
       if (status === 'rejected') {
         return (
-          <div className='text-red-600 flex font-bold'>
+          <div className='text-red-600 flex font-bold gap-5'>
             <X size={24} /> {status}
           </div>
         );
@@ -126,5 +135,33 @@ export const columns: ColumnDef<Column>[] = [
   {
     header: () => <div className='text-blue-500 font-extrabold'>Officer</div>,
     accessorKey: 'officer',
+  },
+  {
+    id: 'actions',
+    cell: ({ row }) => {
+      const flight = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant='ghost' className='h-8 w-8 p-0'>
+              <span className='sr-only'>Open menu</span>
+              <MoreHorizontal className='h-4 w-4' />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align='end'>
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link href={`/flight-details/${flight.id}`}>
+                View Flight details
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>View Permission details</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
   },
 ];

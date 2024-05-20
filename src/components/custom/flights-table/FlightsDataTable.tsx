@@ -6,6 +6,7 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getPaginationRowModel,
 } from '@tanstack/react-table';
 import {
   Table,
@@ -15,6 +16,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+
+import PaginationButtons from './PaginationButtons';
 
 type FlightsTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -29,6 +32,15 @@ function FlightsDataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel({
+      initialSync: true,
+    }),
+    initialState: {
+      pagination: {
+        pageIndex: 0, //start at first page
+        pageSize: 4, //show 4 rows per page as default, look select in PaginationButtons component
+      },
+    },
   });
 
   const headerGroups = table.getHeaderGroups();
@@ -40,6 +52,7 @@ function FlightsDataTable<TData, TValue>({
 
   return (
     <div className='rounded-md border'>
+      <PaginationButtons table={table}></PaginationButtons>
       <Table>
         <TableHeader className='bg-slate-200 text-blue-600'>
           {headerGroups.map((headerGroup) => {

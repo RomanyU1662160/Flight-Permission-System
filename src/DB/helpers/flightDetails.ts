@@ -223,6 +223,7 @@ export const prepareFlightsForDataTable = (
   const columns: Column[] = [];
   fullFlightsData.map((fullFlightData) => {
     const columnData: Column = {
+      id: fullFlightData.flight?.id as string,
       flight_number: fullFlightData.callSign as string,
       AC_type: fullFlightData.aircraft?.type as string,
       AC_registration: fullFlightData.aircraft?.registration as string,

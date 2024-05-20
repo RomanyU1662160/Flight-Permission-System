@@ -25,7 +25,7 @@ function AirlineDetails({ params }: AirlineDetailsProps) {
         </h2>
         <CheckCircle className='text-green-500' size={'40px'} />
       </div>
-      <Tabs defaultValue='account' className='w-full'>
+      <Tabs defaultValue='flight' className='w-full'>
         <TabsList>
           <TabsTrigger value='flight'>Flight details </TabsTrigger>
           <TabsTrigger value='permission'>Permission details</TabsTrigger>
