@@ -9,6 +9,8 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   SortingState,
+  ColumnFiltersState,
+  getFilteredRowModel,
 } from '@tanstack/react-table';
 import {
   Table,
@@ -31,7 +33,7 @@ function FlightsDataTable<TData, TValue>({
   data,
 }: FlightsTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
-
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   /* 
   create table instance with the useReactTable custom hook
   and configure pagination, sorting and core row model
@@ -42,9 +44,14 @@ function FlightsDataTable<TData, TValue>({
     initialState: {
       pagination: {
         pageIndex: 0, //start at first page
-        pageSize: 4, //show 4 rows per page as default, look select in PaginationButtons component
+        pageSize: 10, //show 4 rows per page as default, look select in PaginationButtons component
       },
     },
+    state: {
+      sorting: sorting,
+      columnFilters: columnFilters,
+    },
+
     // add core row model
     getCoreRowModel: getCoreRowModel(),
     // add pagination
@@ -54,9 +61,10 @@ function FlightsDataTable<TData, TValue>({
     //add sorting
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
-    state: {
-      sorting: sorting,
-    },
+
+    // add filtering
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilters,
   });
 
   const headerGroups = table.getHeaderGroups();
@@ -67,7 +75,7 @@ function FlightsDataTable<TData, TValue>({
   });
 
   return (
-    <div className='rounded-md border'>
+    <div className='rounded-md border flex flex-col p-1'>
       <PaginationButtons table={table}></PaginationButtons>
       <Table>
         <TableHeader className='bg-slate-200 text-blue-600'>

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Column, ColumnDef } from '@tanstack/react-table';
+import { Column } from '@tanstack/react-table';
 import { ArrowUpDown } from 'lucide-react';
 import React from 'react';
 
@@ -19,11 +19,12 @@ function SortButton({
 }: SortButtonProps) {
   return (
     <Button
-      // variant={`${column.getIsSorted() === 'asc' ? 'ghost' : 'outline'}`}
-      variant={'ghost'}
+      variant={`${column.getSortIndex() === -1 ? 'ghost' : 'outline'}`}
+      // variant={'ghost'}
       size='sm'
       className='text-blue-500 font-extrabold  '
       onClick={() => {
+        console.log('column.getSortIndex():::>>>', column.getSortIndex());
         handleClick
           ? handleClick()
           : column.toggleSorting(column.getIsSorted() === 'asc', false);
@@ -32,7 +33,7 @@ function SortButton({
     >
       {title}
       {children}
-      <ArrowUpDown className='ml-2 h-4 w-4' />
+      <ArrowUpDown className='ml-2 h-4 w-4 text-gray-500 ' />
     </Button>
   );
 }

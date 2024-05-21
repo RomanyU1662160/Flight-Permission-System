@@ -8,7 +8,6 @@ import {
   PlaneTakeoff,
   X,
   MoreHorizontal,
-  ArrowUpDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,6 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import SortButton from './SortButton';
+import FilterInput from './FilterInput';
 
 export interface Column {
   id: string;
@@ -41,59 +41,103 @@ export interface Column {
 export const columns: ColumnDef<Column>[] = [
   {
     accessorKey: 'flight_number',
-    header: ({ column }) => <SortButton column={column} title='Flight No' />,
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='Flight No' />
+        <FilterInput column={column} />
+      </div>
+    ),
     sortDescFirst: true,
     sortingFn: 'alphanumeric',
   },
   {
     accessorKey: 'operator',
-    header: ({ column }) => <SortButton column={column} title='Operator' />,
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='operator' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
   {
     accessorKey: 'AC_registration',
-    header: ({ column }) => <SortButton column={column} title='A/C Reg' />,
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='A/C reg' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
   {
     accessorKey: 'AC_type',
-    header: () => <div className='text-blue-500 font-extrabold'>A/C Type</div>,
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='A/C type' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
 
   {
     accessorKey: 'purpose',
-    header: ({ column }) => <SortButton column={column} title='Purpose' />,
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='purpose' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
   {
     accessorKey: 'origin',
-
     header: ({ column }) => (
-      <SortButton column={column} title='Origin'>
-        <PlaneTakeoff size={24} className='ml-1' />
-      </SortButton>
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='Origin'>
+          <PlaneTakeoff size={24} className='ml-1' />
+        </SortButton>
+        <FilterInput column={column} />
+      </div>
     ),
   },
   {
     accessorKey: 'departure',
-    header: ({ column }) => <SortButton column={column} title='ETD' />,
     sortingFn: 'datetime',
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='ETD' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
   {
     accessorKey: 'destination',
-
     header: ({ column }) => (
-      <SortButton column={column} title='Destination'>
-        <PlaneLandingIcon size={24} className='ml-1' />
-      </SortButton>
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='Destination'>
+          <PlaneLandingIcon size={24} className='ml-1' />
+        </SortButton>
+        <FilterInput column={column} />
+      </div>
     ),
   },
 
   {
     accessorKey: 'arrival',
-    header: ({ column }) => <SortButton column={column} title='ETA' />,
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='ETA' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => <SortButton column={column} title='status' />,
     sortUndefined: 'last',
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='Status' />
+        <FilterInput column={column} />
+      </div>
+    ),
     cell: ({ row }) => {
       const status = row.getValue('status');
       if (status === 'approved') {
@@ -122,12 +166,22 @@ export const columns: ColumnDef<Column>[] = [
   },
   {
     accessorKey: 'agent',
-    header: ({ column }) => <SortButton column={column} title='Agent' />,
     sortUndefined: 'first',
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='Agent' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
   {
     accessorKey: 'officer',
-    header: ({ column }) => <SortButton column={column} title='Officer' />,
+    header: ({ column }) => (
+      <div className='flex flex-col gap-2'>
+        <SortButton column={column} title='Officer' />
+        <FilterInput column={column} />
+      </div>
+    ),
   },
   {
     id: 'actions',

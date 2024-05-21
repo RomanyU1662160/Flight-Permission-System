@@ -13,13 +13,11 @@ const tableTitle = 'Flights';
 function FlightsPage() {
   const flightsData = prepareFullFlightsData(flights);
 
-  const columnsData = prepareFlightsForDataTable(flightsData);
+  const dataTableFlights = prepareFlightsForDataTable(flightsData);
   return (
     <>
-      <span className='text-muted-foreground'>To add search functionality</span>
-
       {/* <FlightsTable flightsData={flightsData} tableTitle={tableTitle} /> */}
-      <FlightsDataTable columns={columns} data={columnsData} />
+      <FlightsDataTable columns={columns} data={dataTableFlights} />
     </>
   );
 }
