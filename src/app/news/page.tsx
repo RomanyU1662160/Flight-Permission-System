@@ -14,9 +14,7 @@ async function NewsPage() {
   const retrievedArticles = await getArticles();
   return (
     <div className='bg-gray-100'>
-      <h1 className='text-3xl  text-center text-blue-400 border-b-4  '>
-        News Page
-      </h1>
+      <h1 className=' pb-4'>News Page</h1>
       <ArticlesList articles={retrievedArticles} />
     </div>
   );

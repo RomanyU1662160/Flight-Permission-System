@@ -76,7 +76,10 @@ function FlightsDataTable<TData, TValue>({
 
   return (
     <div className='rounded-md border flex flex-col p-1'>
-      <PaginationButtons table={table}></PaginationButtons>
+      <div className='flex justify-between place-items-end'>
+        <h2 className=' text-center font-bold shadow-md'> Flights list</h2>
+        <PaginationButtons table={table}></PaginationButtons>
+      </div>
       <Table>
         <TableHeader className='bg-slate-200 text-blue-600'>
           {headerGroups.map((headerGroup) => {
@@ -101,9 +104,7 @@ function FlightsDataTable<TData, TValue>({
         <TableBody>
           {!rows?.length ? (
             <TableRow>
-              <TableCell colSpan={columns.length}>
-                No Flights to show{' '}
-              </TableCell>
+              <TableCell colSpan={columns.length}>No Flights to show</TableCell>
             </TableRow>
           ) : (
             <>

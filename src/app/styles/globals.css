@@ -79,13 +79,17 @@
 } */
 
 h1 {
-  @apply scroll-m-20 text-4xl font-bold tracking-wide text-center lg:text-6xl;
+  @apply text-blue-700 scroll-m-20 text-3xl font-bold tracking-wide text-center lg:text-3xl;
 }
 
 h2 {
-  @apply scroll-m-20 border-b pb-2 text-3xl font-semibold -tracking-tight transition-colors duration-200 first:mt-0;
+  @apply text-blue-700 scroll-m-20 border-b pb-2 text-3xl font-semibold -tracking-tight transition-colors duration-200 first:mt-0;
 }
 
 .title {
   @apply text-7xl font-bold text-center text-green-600;
+}
+
+.fps-theme {
+  @apply bg-gradient-to-br to-blue-500 from-slate-800;
 }

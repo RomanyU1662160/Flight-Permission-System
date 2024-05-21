@@ -20,17 +20,19 @@ import Image from 'next/image';
 function Navbar() {
   return (
     <>
-      <div className='bg-black p-6 mb-2 rounded-sm '>
+      <div className=' decoration-clone fps-theme p-4 mb-2 rounded-sm '>
         <NavigationMenu className=''>
           <NavigationMenuViewport />
           <Link href='/' legacyBehavior passHref>
-            <Image
-              className='cursor-pointer rounded-full mr-5'
-              src='/logo5.jpeg'
-              alt='logo'
-              width={80}
-              height={100}
-            />
+            <div className=''>
+              <Image
+                className='cursor-pointer rounded-full fade-in-90 mr-5'
+                src='/logo4.jpeg'
+                alt='logo'
+                width={100}
+                height={100}
+              />
+            </div>
           </Link>
 
           <NavigationMenuList>
@@ -40,7 +42,7 @@ function Navbar() {
                   <NavigationMenuItem key={link.title}>
                     <Link href={link.href} legacyBehavior passHref>
                       <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
+                        className={`${navigationMenuTriggerStyle()}`}
                       >
                         {link.title}
                       </NavigationMenuLink>
@@ -52,7 +54,7 @@ function Navbar() {
                   <NavigationMenuItem key={link.title}>
                     <NavigationMenuTrigger>{link.title}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>
+                      <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]  '>
                         {link.children?.map((component) => (
                           <ListItem
                             key={component.title}

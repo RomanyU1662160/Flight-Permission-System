@@ -45,7 +45,7 @@ function ArticleItem({ article }: ArticleItemProps) {
           </CardDescription>
           <CardContent>{article.content}</CardContent>
           <CardFooter className=' bg-gray-100'>
-            <Button variant={'default'} asChild>
+            <Button variant={'default'} className='fps-theme' asChild>
               <Link href={`/news/${article.id}`}>
                 Read Article
                 <ChevronRightIcon className='h-6 w-6' />

@@ -17,7 +17,7 @@ type PaginationProps<TData> = {
 
 function PaginationButtons<TData>({ table }: PaginationProps<TData>) {
   return (
-    <div className='flex justify-end items-center py-3 gap-3'>
+    <div className='flex justify-end items-center py-3 gap-3 '>
       <span>
         Page{' '}
         <strong>
@@ -28,6 +28,7 @@ function PaginationButtons<TData>({ table }: PaginationProps<TData>) {
         size='sm'
         onClick={() => table.firstPage()}
         disabled={!table.getCanPreviousPage()}
+        className='fps-theme'
       >
         {'<<'}
       </Button>
@@ -35,6 +36,7 @@ function PaginationButtons<TData>({ table }: PaginationProps<TData>) {
         size='sm'
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
+        className='fps-theme'
       >
         {'<'}
       </Button>
@@ -42,6 +44,7 @@ function PaginationButtons<TData>({ table }: PaginationProps<TData>) {
         size='sm'
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
+        className='fps-theme'
       >
         {'>'}
       </Button>
@@ -49,6 +52,7 @@ function PaginationButtons<TData>({ table }: PaginationProps<TData>) {
         size='sm'
         onClick={() => table.lastPage()}
         disabled={!table.getCanNextPage()}
+        className='fps-theme'
       >
         {'>>'}
       </Button>
@@ -59,7 +63,7 @@ function PaginationButtons<TData>({ table }: PaginationProps<TData>) {
           table.setPageSize(Number(value));
         }}
       >
-        <SelectTrigger className='w-[80px]'>
+        <SelectTrigger className='w-[60px]'>
           <SelectValue placeholder='Select' />
         </SelectTrigger>
         <SelectContent>
