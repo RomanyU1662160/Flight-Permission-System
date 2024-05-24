@@ -5,11 +5,14 @@ import {
   Aircraft,
   Airline,
   Airport,
+  Assignment,
   City,
+  Comment,
   Country,
   Flight,
   FlightType,
   FullFlightData,
+  FullPermissionData,
   Officer,
   Permission,
   PermissionStatus,
@@ -106,9 +109,63 @@ export const getPermissionById = (id: string) => {
 export const getPermissionByFlightId = (id: string) => {
   return data.permissions.find((permission) => permission.flightId === id);
 };
+export const getPermissionCommentsByPermissionId = (permID: string) => {
+  return data.comments.filter((comment) => comment.permissionId === permID);
+};
+export const getPermissionCommentsByFlightId = (flightID: string) => {
+  const permission = getPermissionByFlightId(flightID);
+  if (!permission) {
+    return undefined;
+  }
+  return permission
+    ? getPermissionCommentsByPermissionId(permission.id)
+    : undefined;
+};
+
+export const getPermissionFlightsByPermissionId = (permId: string) => {
+  const permission = getPermissionById(permId);
+  if (!permission) {
+    return undefined;
+  }
+  return data.flights.filter((flight) => flight.id === permission?.flightId);
+};
+/* comments helpers */
+export const getComments = () => {
+  return data.comments;
+};
+
+export const getCommenterByCommentId = (commentID: string) => {
+  const comment = getCommentById(commentID);
+  if (!comment) {
+    return undefined;
+  }
+  return data.officers.find((officer) => officer.id === comment?.commenterId);
+};
+
+export const getCommentsByFlightId = (flightID: string) => {
+  const permission = getPermissionByFlightId(flightID);
+  if (!permission) {
+    return undefined;
+  }
+  return getPermissionCommentsByPermissionId(permission.id);
+};
+
+export const getCommentById = (id: string) => {
+  return data.comments.find((comment) => comment.id === id);
+};
 
 /* officers helpers */
-export const getOfficers = (): Omit<Officer, 'officer_password'>[] => {
+
+export const getOfficerApproverByPermissionId = (permID: string) => {
+  const permission = getPermissionById(permID);
+  if (!permission) {
+    return undefined;
+  }
+  return data.officers.find((officer) => officer.id === permission?.officerId);
+};
+
+export /* officers helpers */
+const getOfficers = (): Omit<Officer, 'officer_password'>[] => {
   return data.officers;
 };
 
@@ -157,6 +214,25 @@ export const buildFlightCallSign = (flight: Flight, airline: Airline) => {
   }
 };
 
+export const getFullPermissionData = (permId: string): FullPermissionData => {
+  let comments: Comment[] | undefined = [];
+  let flights: Flight[] | undefined = [];
+  let assignment: Assignment | undefined;
+  let agent: Agent | undefined;
+
+  const permission = getPermissionById(permId);
+  comments = getPermissionCommentsByPermissionId(permId);
+  flights = getPermissionFlightsByPermissionId(permId);
+  agent = getAgentById(permission?.agentId as string);
+
+  return {
+    comments,
+    flights,
+    assignment,
+    agent,
+  };
+};
+
 export const getFullFlightData = (id: string): FullFlightData => {
   let flight: Flight | undefined;
   let airline: Airline | undefined;
@@ -169,11 +245,13 @@ export const getFullFlightData = (id: string): FullFlightData => {
   let permission: Permission | undefined;
   let callSign: string | undefined;
   let aircraft: Aircraft | undefined;
+  let agent: Agent | undefined;
+  let officer: Omit<Officer, 'officer_password'> | undefined;
 
   flight = getFlightById(id);
   permission = getPermissionByFlightId(id);
-  const agent = getAgentByFlightId(id);
-  const officer = getOfficerByFlightId(id);
+  agent = getAgentByFlightId(id);
+  officer = getOfficerByFlightId(id);
   airline = getAirlineById(flight?.airlineId as string);
 
   aircraft = getAircraftByFlightId(flight?.id as string);
@@ -236,6 +314,9 @@ export const prepareFlightsForDataTable = (
       status: fullFlightData.permission?.status as PermissionStatus,
       agent: fullFlightData.agent?.agent_name as string,
       officer: fullFlightData.officer?.first_name as string,
+      permissionId: fullFlightData.permission?.id as string,
+      airlineId: fullFlightData.airline?.airlineId as string,
+      aircraftId: fullFlightData.aircraft?.id as string,
     };
     columns.push(columnData);
   });

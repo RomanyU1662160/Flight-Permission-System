@@ -119,6 +119,13 @@ export type Assignment = {
   timestamp: string;
 };
 
+export type FullPermissionData = {
+  comments: Comment[] | undefined;
+  flights: Flight[] | undefined;
+  assignment: Assignment | undefined;
+  agent: Agent | undefined;
+};
+
 export type FullFlightData = {
   flight: Flight | undefined;
   callSign: string;

@@ -21,6 +21,7 @@ import {
 import Link from 'next/link';
 import SortButton from './SortButton';
 import FilterInput from './FilterInput';
+import ActionsDropDown from './ActionsBtn';
 
 export interface Column {
   id: string;
@@ -36,6 +37,9 @@ export interface Column {
   status: PermissionStatus;
   agent: string;
   officer: string;
+  permissionId: string;
+  airlineId: string;
+  aircraftId: string;
 }
 
 export const columns: ColumnDef<Column>[] = [
@@ -186,28 +190,14 @@ export const columns: ColumnDef<Column>[] = [
   {
     id: 'actions',
     cell: ({ row }) => {
-      const flight = row.original;
-
+      const flightRow = row.original;
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant='ghost' className='h-8 w-8 p-0'>
-              <span className='sr-only'>Open menu</span>
-              <MoreHorizontal className='h-4 w-4' />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={`/flight-details/${flight.id}`}>
-                View Flight details
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>View Permission details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <ActionsDropDown
+          flightId={flightRow.id}
+          permissionId={flightRow.permissionId}
+          aircraftId={flightRow.aircraftId}
+          airlineId={flightRow.airlineId}
+        />
       );
     },
   },

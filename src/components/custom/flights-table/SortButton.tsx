@@ -24,7 +24,6 @@ function SortButton({
       size='sm'
       className='text-blue-500 font-extrabold  '
       onClick={() => {
-        console.log('column.getSortIndex():::>>>', column.getSortIndex());
         handleClick
           ? handleClick()
           : column.toggleSorting(column.getIsSorted() === 'asc', false);

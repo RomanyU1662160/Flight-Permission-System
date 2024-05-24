@@ -79,11 +79,11 @@
 } */
 
 h1 {
-  @apply text-blue-700 scroll-m-20 text-3xl font-bold tracking-wide text-center lg:text-3xl;
+  @apply text-blue-500 scroll-m-20 text-3xl font-bold tracking-wide text-center lg:text-3xl;
 }
 
 h2 {
-  @apply text-blue-700 scroll-m-20 border-b pb-2 text-3xl font-semibold -tracking-tight transition-colors duration-200 first:mt-0;
+  @apply text-blue-500 scroll-m-20  pb-2 text-3xl font-bold tracking-wide text-center lg:text-3xl;
 }
 
 .title {

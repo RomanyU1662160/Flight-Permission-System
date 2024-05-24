@@ -70,17 +70,17 @@ function FlightsDataTable<TData, TValue>({
   const headerGroups = table.getHeaderGroups();
   const rows = table.getRowModel().rows;
 
-  table.getHeaderGroups().map((headerGroup) => {
-    console.log('headerGroup:::>>>', headerGroup.headers);
-  });
+  // table.getHeaderGroups().map((headerGroup) => {
+  //   console.log('headerGroup:::>>>', headerGroup.headers);
+  // });
 
   return (
     <div className='rounded-md border flex flex-col p-1'>
-      <div className='flex justify-between place-items-end'>
-        <h2 className=' text-center font-bold shadow-md'> Flights list</h2>
+      <div className='flex justify-between items-end'>
+        <h2 className=' text-center font-bold '> Flights list</h2>
         <PaginationButtons table={table}></PaginationButtons>
       </div>
-      <Table>
+      <Table className='table-auto'>
         <TableHeader className='bg-slate-200 text-blue-600'>
           {headerGroups.map((headerGroup) => {
             return (

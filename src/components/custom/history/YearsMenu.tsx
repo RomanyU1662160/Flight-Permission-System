@@ -10,9 +10,7 @@ type YearsMenuProps = {
 
 function YearsMenu({ years }: YearsMenuProps) {
   const pathName = usePathname();
-  console.log('pathName:::>>>', pathName);
   const flightSlug = pathName.split('/')[2];
-  console.log('flightId:::>>>', flightSlug);
   return (
     <div>
       <div className='space-y-1'>

@@ -6,7 +6,7 @@ import {
   getFilterYears,
   getFlightHistoryByYearAndFlightNumber,
 } from '@/DB/helpers/flightHistory';
-import FlightsTable from '@/components/custom/flights/FlightsTable';
+import FlightsTable from '@/components/custom/flights/toDelete/FlightsTable';
 import React from 'react';
 
 type FlightHistoryArchivePageProps = {
