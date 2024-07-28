@@ -22,12 +22,10 @@ function YearsMenu({ years }: YearsMenuProps) {
       <div className='flex h-5 items-center space-x-4 text-sm'>
         {years.map((year) => {
           return (
-            <>
-              <Link key={year} href={`/flight-history/${flightSlug}/${year}`}>
-                {year}
-              </Link>
+            <React.Fragment key={year}>
+              <Link href={`/flight-history/${flightSlug}/${year}`}>{year}</Link>
               <Separator className='bg-black' orientation='vertical' />
-            </>
+            </React.Fragment>
           );
         })}
       </div>

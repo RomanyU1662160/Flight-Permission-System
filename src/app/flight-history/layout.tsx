@@ -14,6 +14,7 @@ type ArchiveLayoutProps = {
 function ArchiveLayout({ archive, latest, children }: ArchiveLayoutProps) {
   return (
     <div className=' border'>
+      {/* children rendered from the default page */}
       {children}
       <div className='flex  items-center justify-center p-6'>
         <span className='font-semibold'>{archive}</span>

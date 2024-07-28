@@ -37,9 +37,7 @@ function FlightHistoryArchivePage({ params }: FlightHistoryArchivePageProps) {
   }
 
   return (
-    <>
-      <FlightsTable flightsData={archivedFlightsData} tableTitle={tableTitle} />
-    </>
+    <FlightsTable flightsData={archivedFlightsData} tableTitle={tableTitle} />
   );
 }
 

@@ -11,11 +11,9 @@ type DefaultDashboardPops = {
 function DefaultDashboard({ params }: DefaultDashboardPops) {
   const yearsFilter = getFilterYears('2020', '2023');
   return (
-    <>
-      <div className='flex mt-5 mb-5 justify-start text-sm shadow bg-slate-200 p-3'>
-        <YearsMenu years={yearsFilter} />
-      </div>
-    </>
+    <div className='flex mt-5 mb-5 justify-start text-sm shadow bg-slate-200 p-3'>
+      <YearsMenu years={yearsFilter} />
+    </div>
   );
 }
 
