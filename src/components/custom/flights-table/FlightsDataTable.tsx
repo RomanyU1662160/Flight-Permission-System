@@ -22,6 +22,8 @@ import {
 } from '@/components/ui/table';
 
 import PaginationButtons from './PaginationButtons';
+import { HoverCard, HoverCardTrigger } from '@/components/ui/hover-card';
+import FlightHoverCardContent, { HoverContent } from './FlightHoverContent';
 
 type FlightsTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -110,12 +112,20 @@ function FlightsDataTable<TData, TValue>({
                   data-state={row.getIsSelected() && 'selected'}
                 >
                   {row.getVisibleCells().map((cell) => {
+                    console.log('cell.row.original:::>>', cell.row.original);
                     return (
                       <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
+                        <HoverCard>
+                          <HoverCardTrigger>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </HoverCardTrigger>
+                          <FlightHoverCardContent
+                            content={cell.row.original as HoverContent}
+                          />
+                        </HoverCard>
                       </TableCell>
                     );
                   })}
