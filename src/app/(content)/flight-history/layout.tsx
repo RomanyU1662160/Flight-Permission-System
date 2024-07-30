@@ -1,9 +1,4 @@
 import React from 'react';
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from '@/components/ui/resizable';
 
 type ArchiveLayoutProps = {
   archive: React.ReactNode;

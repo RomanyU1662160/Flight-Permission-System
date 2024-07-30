@@ -10,8 +10,9 @@ import FlightsTable from '@/components/custom/flights/toDelete/FlightsTable';
 import React from 'react';
 
 const tableTitle = 'Flights';
-function FlightsPage() {
-  const flightsData = prepareFullFlightsData(flights);
+async function FlightsPage() {
+  const response = await fetch('http://localhost:3000/api/flights');
+  const flightsData = (await response.json()) as FullFlightData[];
 
   const dataTableFlights = prepareFlightsForDataTable(flightsData);
   return (

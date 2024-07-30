@@ -70,10 +70,6 @@ function FlightsDataTable<TData, TValue>({
   const headerGroups = table.getHeaderGroups();
   const rows = table.getRowModel().rows;
 
-  // table.getHeaderGroups().map((headerGroup) => {
-  //   console.log('headerGroup:::>>>', headerGroup.headers);
-  // });
-
   return (
     <div className='rounded-md border flex flex-col p-1'>
       <div className='flex justify-between items-end'>

@@ -9,6 +9,7 @@ type AirlineDetailsProps = {
 };
 
 function AirlineDetails({ params }: AirlineDetailsProps) {
+  console.log('params.flightId:::>>>', params.flightId);
   const fullFlightDetails = getFullFlightData(params.flightId);
   if (!fullFlightDetails) {
     return <div>Flight not found</div>;

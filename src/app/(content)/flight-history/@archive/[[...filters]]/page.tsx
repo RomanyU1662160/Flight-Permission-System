@@ -17,8 +17,8 @@ type FlightHistoryArchivePageProps = {
 
 function FlightHistoryArchivePage({ params }: FlightHistoryArchivePageProps) {
   const filters = params.filters;
-  const flightSlug = filters[0];
-  const yearSlug = filters[1];
+  const flightSlug = filters?.[0];
+  const yearSlug = filters?.[1];
 
   const flightsByYear = getFlightHistoryByYearAndFlightNumber(
     flightSlug,

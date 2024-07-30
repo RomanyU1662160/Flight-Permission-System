@@ -7,7 +7,7 @@ const getArticles = async () => {
   await new Promise((resolve) => {
     setTimeout(resolve, 3000);
   });
-  return articles as Article[];
+  return articles;
 };
 
 async function NewsPage() {
