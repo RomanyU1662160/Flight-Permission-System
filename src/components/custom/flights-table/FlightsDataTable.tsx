@@ -112,7 +112,6 @@ function FlightsDataTable<TData, TValue>({
                   data-state={row.getIsSelected() && 'selected'}
                 >
                   {row.getVisibleCells().map((cell) => {
-                    console.log('cell.row.original:::>>', cell.row.original);
                     return (
                       <TableCell key={cell.id}>
                         <HoverCard>
