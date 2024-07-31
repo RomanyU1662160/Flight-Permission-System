@@ -21,7 +21,7 @@ export type User = {
   user_id: string;
   user_name: string;
   user_email: string;
-  user_role: UserType;
+  user_role: UserRoles;
   agent_id?: string;
   airlineId?: string;
 };
@@ -50,7 +50,7 @@ export type Airport = {
   id: string;
   name: string;
   cityId: string;
-  airport_type?: AirportType;
+  airport_type?: AirportTypes;
 };
 
 export type City = {
@@ -142,6 +142,7 @@ export type FullFlightData = {
   aircraft: Aircraft | undefined;
 };
 
+// to DO:: remove this and use the enum values below
 export type FlightType =
   | 'charter'
   | 'overflight'
@@ -156,8 +157,36 @@ export type FlightType =
   | 'test'
   | 'other';
 
-export type PermissionStatus = 'pending' | 'approved' | 'rejected';
+export enum FlightTypes {
+  Charter = 'charter',
+  Overflight = 'overflight',
+  TechLanding = 'tech-landing',
+  Emergency = 'emergency',
+  Cargo = 'cargo',
+  Passenger = 'passenger',
+  Repatriation = 'repatriation',
+  Medical = 'medical',
+  Positioning = 'positioning',
+  Training = 'training',
+  Test = 'test',
+  Other = 'other',
+}
 
-export type AirportType = 'international' | 'domestic';
+export enum AirportTypes {
+  International = 'international',
+  Domestic = 'domestic',
+}
 
-export type UserType = 'officer' | 'agent' | 'admin' | 'airline';
+export enum PermissionStatus {
+  Pending = 'pending',
+  Approved = 'approved',
+  Rejected = 'rejected',
+}
+
+export enum UserRoles {
+  Admin = 'admin',
+  Officer = 'officer',
+  Agent = 'agent',
+  Airline = 'airline',
+  Viewer = 'viewer', // Viewer is a new register until an admin approve an update the role.
+}

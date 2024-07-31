@@ -37,15 +37,12 @@ Here is a comprehensive summary of everything we've discussed, ready for you to 
 - **Localization:** Next-translate (or react-intl)
 - **PWA Features:** Next.js's built-in pwa configuration, Workbox for caching, and Lighthouse for performance optimization.
 ### <a name="_w2q5zlw7ozh"></a>3. Database Design (MongoDB):
-`     `// ... (MongoDB schema definitions as previously discussed)
 
+```
 
+// ... (MongoDB schema definitions as previously discussed)
 
-content\_copy Use code[ ](https://support.google.com/legal/answer/13505487)[with caution](https://support.google.com/legal/answer/13505487).JavaScript
-### <a name="_wrts9msauhdr"></a>4. Database Connection (Next.js):
-- **Create a lib/db.ts File:**
-
-`     `// lib/db.ts
+// lib/db.ts
 
 import mongoose from 'mongoose';
 
@@ -59,7 +56,7 @@ return cachedDb;
 
 }
 
-const db = await mongoose.connect(process.env.MONGODB\_URI || '');
+const db = await mongoose.connect(process.env.MONGODB_URI || '');
 
 cachedDb = db.connection;
 
@@ -67,13 +64,13 @@ return cachedDb;
 
 }
 
+```
 
-
-content\_copy Use code[ ](https://support.google.com/legal/answer/13505487)[with caution](https://support.google.com/legal/answer/13505487).TypeScript
 
 - **Use in Your API Routes:**
 
-`     `import { NextApiRequest, NextApiResponse } from 'next';
+```
+import { NextApiRequest, NextApiResponse } from 'next';
 
 import { connectToDatabase } from '../lib/db';
 
@@ -81,15 +78,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 await connectToDatabase(); 
 
-// ... rest of your API route logic
 
 }
+ 
+```
 
-` ````  
 
-content\_copy Use code[ ](https://support.google.com/legal/answer/13505487)[with caution](https://support.google.com/legal/answer/13505487).TypeScript
-### <a name="_ofqfpbvcurvc"></a>5. Typescript Integration (with MongoDB):
-- **Create Interfaces:** Mirror your MongoDB schema fields with TypeScript interfaces.
+ **Create Interfaces**
+
+Mirror your MongoDB schema fields with TypeScript interfaces.
 - **Type Mongoose Models:** Use generics to type your Mongoose models for better type safety.
 - **Use Types in Your App:** Utilize the interfaces in your data fetching functions, API routes, and components.
 ### <a name="_8gomo76o7mza"></a>6. Localization:
@@ -100,7 +97,8 @@ content\_copy Use code[ ](https://support.google.com/legal/answer/13505487)[with
 ### <a name="_nn52za46rq35"></a>7. Progressive Web App (PWA):
 - **Enable PWA in next.config.js:**
 
-`     `// next.config.js
+```
+// next.config.js
 
 const nextConfig = {
 
@@ -120,9 +118,9 @@ runtimeCaching: [
 
 };
 
+```
 
 
-content\_copy Use code[ ](https://support.google.com/legal/answer/13505487)[with caution](https://support.google.com/legal/answer/13505487).JavaScript
 
 - **Create a manifest.json File:** Define metadata for your PWA.
 - **Test Your PWA:** Ensure it works properly in different mobile browsers.
@@ -157,62 +155,62 @@ This summary provides a roadmap to develop your Air Transport & Flight Permissio
 **Entities:**
 
 - **Airline:**
-  - airline\_id (PK)
+  - airline_id (PK)
   - name
-  - icao\_code
-  - iata\_code
-  - contact\_info
+  - icao_code
+  - iata_code
+  - contact_info
 
 - **Aircraft:**
-  - aircraft\_id (PK)
-  - registration\_number
+  - aircraft_id (PK)
+  - registration_number
   - model
   - manufacturer
-  - airline\_id (FK)
+  - airline_id (FK)
 
 - **FlightPlan:**
-  - flight\_plan\_id (PK)
-  - airline\_id (FK)
-  - aircraft\_id (FK)
-  - departure\_airport\_id (FK)
-  - arrival\_airport\_id (FK)
-  - departure\_datetime
-  - arrival\_datetime
-  - flight\_number
+  - flight_plan_id (PK)
+  - airline_id (FK)
+  - aircraft_id (FK)
+  - departure_airport_id (FK)
+  - arrival_airport_id (FK)
+  - departure_datetime
+  - arrival_datetime
+  - flight_number
   - route
 
 - **Permission:**
-  - permission\_id (PK)
-  - flight\_plan\_id (FK)
+  - permission_id (PK)
+  - flight_plan_id (FK)
   - status
-  - request\_datetime
-  - approval\_datetime
+  - request_datetime
+  - approval_datetime
   - reason
-  - officer\_id (FK)
+  - officer_id (FK)
 
 - **AirTransportOfficer:**
-  - officer\_id (PK)
+  - officer_id (PK)
   - name
   - agency
-  - contact\_info
+  - contact_info
 
 - **Airport:**
-  - airport\_id (PK)
+  - airport_id (PK)
   - name
-  - iata\_code
-  - icao\_code
-  - country\_id (FK)
+  - iata_code
+  - icao_code
+  - country_id (FK)
   - location (GeoJSON)
 
 - **Country:**
-  - country\_id (PK)
+  - country_id (PK)
   - name
-  - iso\_code
+  - iso_code
 
 - **Note:**
-  - note\_id (PK)
-  - permission\_id (FK)
-  - note\_text
+  - note_id (PK)
+  - permission_id (FK)
+  - note_text
 
 **Relationships:**
 
@@ -262,55 +260,55 @@ This description should allow you to create a clear and accurate ERD representin
 
 ### <a name="_jkijnenidm7c"></a>2. Create TypeScript Interfaces:
 Mirror the Schemas: Create TypeScript interfaces that mirror the structure of your MongoDB schemas:
-
+```
 // Example:
 
 import mongoose from 'mongoose';
 
 interface Airline {
 
-\_id: mongoose.Types.ObjectId; // Include \_id for better type safety
+_id: mongoose.Types.ObjectId; // Include _id for better type safety
 
 name: string;
 
-icao\_code: string;
+icao_code: string;
 
-iata\_code: string;
+iata_code: string;
 
-contact\_info: string;
+contact_info: string;
 
 }
 
 interface Aircraft {
 
-\_id: mongoose.Types.ObjectId; // Include \_id for better type safety
+_id: mongoose.Types.ObjectId; // Include _id for better type safety
 
-registration\_number: string;
+registration_number: string;
 
 model: string;
 
 manufacturer: string;
 
-airline\_id: mongoose.Types.ObjectId; 
+airline_id: mongoose.Types.ObjectId; 
 
 }
+```
 ### <a name="_sm8onq1riojm"></a>3. Type the Mongoose Models (Recommended):
 
 - Use Generic Types: Use TypeScript generics to type your Mongoose models, ensuring that the model's methods return typed data.
-- import { model, Schema } from 'mongoose';
 
-\
+- import { model, Schema } from 'mongoose';
 ```
 
 const AirlineSchema = new Schema<Airline>({
 
 name: { type: String, required: true },
 
-icao\_code: { type: String, unique: true, required: true },
+icao_code: { type: String, unique: true, required: true },
 
-iata\_code: { type: String, unique: true, required: true },
+iata_code: { type: String, unique: true, required: true },
 
-contact\_info: { type: String },
+contact_info: { type: String },
 
 });
 
@@ -354,85 +352,92 @@ const airlineSchema = {
 
 name: { type: String, required: true },
 
-icao\_code: { type: String, unique: true, required: true },
+icao_code: { type: String, unique: true, required: true },
 
-iata\_code: { type: String, unique: true, required: true },
+iata_code: { type: String, unique: true, required: true },
 
-contact\_info: { type: String },
+contact_info: { type: String },
 
 };
-
+```
+```
 const aircraftSchema = {
 
-registration\_number: { type: String, unique: true, required: true },
+registration_number: { type: String, unique: true, required: true },
 
 model: { type: String, required: true },
 
 manufacturer: { type: String, required: true },
 
-airline\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
+airline_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
 
 };
+```
 
 
 
-
+```
 
 const flightPlanSchema = {
 
-airline\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
+airline_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
 
-aircraft\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Aircraft', required: true },
+aircraft_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Aircraft', required: true },
 
-departure\_airport\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airport', required: true },
+departure_airport_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airport', required: true },
 
-arrival\_airport\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airport', required: true },
+arrival_airport_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airport', required: true },
 
-departure\_datetime: { type: Date, required: true },
+departure_datetime: { type: Date, required: true },
 
-arrival\_datetime: { type: Date, required: true },
+arrival_datetime: { type: Date, required: true },
 
-flight\_number: { type: String, required: true },
+flight_number: { type: String, required: true },
 
 route: { type: String },
 
 };
-
+```
+```
 const permissionSchema = {
 
-flight\_plan\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'FlightPlan', required: true },
+flight_plan_id: { type: mongoose.Schema.Types.ObjectId, ref: 'FlightPlan', required: true },
 
 status: { type: String, default: 'Pending', enum: ['Pending', 'Approved', 'Denied'] },
 
-request\_datetime: { type: Date, required: true },
+request_datetime: { type: Date, required: true },
 
-approval\_datetime: { type: Date },
+approval_datetime: { type: Date },
 
 reason: { type: String },
 
-officer\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'AirTransportOfficer', required: true },
+officer_id: { type: mongoose.Schema.Types.ObjectId, ref: 'AirTransportOfficer', required: true },
 
 };
+```
 
+```
 const airTransportOfficerSchema = {
 
 name: { type: String, required: true },
 
 agency: { type: String, required: true },
 
-contact\_info: { type: String },
+contact_info: { type: String },
 
 };
+```
 
+```
 const airportSchema = {
 
 name: { type: String, required: true },
 
-iata\_code: { type: String, unique: true, required: true },
+iata_code: { type: String, unique: true, required: true },
 
-icao\_code: { type: String, unique: true, required: true },
+icao_code: { type: String, unique: true, required: true },
 
-country\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Country', required: true },
+country_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Country', required: true },
 
 location: {
 
@@ -443,25 +448,28 @@ coordinates: { type: [Number], required: true },
 },
 
 };
-
+```
+```
 const countrySchema = {
 
 name: { type: String, required: true },
 
-iso\_code: { type: String, unique: true, required: true },
+iso_code: { type: String, unique: true, required: true },
 
 };
-
+```
+```
 const noteSchema = {
 
-permission\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Permission', required: true },
+permission_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Permission', required: true },
 
-note\_text: { type: String, required: true },
+note_text: { type: String, required: true },
 
 };
+```
 
-// Create Mongoose models using the schemas
-
+**Create Mongoose models using the schemas**
+```
 const Airline = mongoose.model('Airline', new mongoose.Schema(airlineSchema));
 
 const Aircraft = mongoose.model('Aircraft', new mongoose.Schema(aircraftSchema));
@@ -489,42 +497,42 @@ const airlineSchema = {
 
 name: { type: String, required: true },
 
-icao\_code: { type: String, unique: true, required: true },
+icao_code: { type: String, unique: true, required: true },
 
-iata\_code: { type: String, unique: true, required: true },
+iata_code: { type: String, unique: true, required: true },
 
-contact\_info: { type: String },
+contact_info: { type: String },
 
 };
 
 
 const aircraftSchema = {
 
-registration\_number: { type: String, unique: true, required: true },
+registration_number: { type: String, unique: true, required: true },
 
 model: { type: String, required: true },
 
 manufacturer: { type: String, required: true },
 
-airline\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
+airline_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
 
 };
 
 const flightPlanSchema = {
 
-airline\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
+airline_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline', required: true },
 
-aircraft\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Aircraft', required: true },
+aircraft_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Aircraft', required: true },
 
-departure\_airport\_code: { type: String, required: true },
+departure_airport_code: { type: String, required: true },
 
-arrival\_airport\_code: { type: String, required: true },
+arrival_airport_code: { type: String, required: true },
 
-departure\_datetime: { type: Date, required: true },
+departure_datetime: { type: Date, required: true },
 
-arrival\_datetime: { type: Date, required: true },
+arrival_datetime: { type: Date, required: true },
 
-flight\_number: { type: String, required: true },
+flight_number: { type: String, required: true },
 
 route: { type: String },
 
@@ -532,13 +540,13 @@ route: { type: String },
 
 const permissionSchema = {
 
-flight\_plan\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'FlightPlan', required: true },
+flight_plan_id: { type: mongoose.Schema.Types.ObjectId, ref: 'FlightPlan', required: true },
 
 status: { type: String, default: 'Pending', enum: ['Pending', 'Approved', 'Denied'] },
 
-request\_datetime: { type: Date, required: true },
+request_datetime: { type: Date, required: true },
 
-approval\_datetime: { type: Date },
+approval_datetime: { type: Date },
 
 reason: { type: String },
 
@@ -551,15 +559,15 @@ name: { type: String, required: true },
 
 agency: { type: String, required: true },
 
-contact\_info: { type: String },
+contact_info: { type: String },
 
 };
 
 const noteSchema = {
 
-permission\_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Permission', required: true },
+permission_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Permission', required: true },
 
-note\_text: { type: String, required: true },
+note_text: { type: String, required: true },
 
 };
 
@@ -583,11 +591,11 @@ const Note = mongoose.model('Note', new mongoose.Schema(noteSchema));
 
 //   name: 'British Airways',
 
-//   icao\_code: 'BAW',
+//   icao_code: 'BAW',
 
-//   iata\_code: 'BA',
+//   iata_code: 'BA',
 
-//   contact\_info: '...'
+//   contact_info: '...'
 
 // });
 
@@ -599,13 +607,13 @@ const Note = mongoose.model('Note', new mongoose.Schema(noteSchema));
 
 // const aircraft1 = new Aircraft({
 
-//   registration\_number: 'G-XXXX',
+//   registration_number: 'G-XXXX',
 
 //   model: 'Boeing 777-300ER',
 
 //   manufacturer: 'Boeing',
 
-//   airline\_id: airline1.\_id // Replace with the airline\_id of British Airways
+//   airline_id: airline1._id // Replace with the airline_id of British Airways
 
 // });
 
@@ -618,25 +626,9 @@ const Note = mongoose.model('Note', new mongoose.Schema(noteSchema));
 `  
  ```
 
-**Key Changes:**
 
-- **Airports:** A new Airport collection is introduced, storing information about airports (name, IATA code, ICAO code, country, and location).
-- **Countries:** A new Country collection is introduced, storing information about countries (name and ISO code).
-- **Relationships:** Relationships are updated to reflect the new collections:
-  - FlightPlan now references Airport for departure and arrival airports.
-  - Airport references Country.
-  - Permission references AirTransportOfficer.
 
-**Additional Considerations:**
-
-- **Location Data:** The Airport schema now includes a location field with type and coordinates for storing geographical coordinates, which can be used for mapping or distance calculations.
-- **Indexes:** Create indexes on important fields (like airport codes, flight numbers) for faster queries.
-- **Data Validation:** Implement data validation to ensure consistency and prevent errors (e.g., unique airport codes, valid IATA/ICAO codes).
-
-This revised database schema better supports your "Air Transport & Flight Permissions" app by providing a more comprehensive structure for managing airports, countries, and air transport officers. As before, make sure to populate the database with appropriate data and use Mongoose models to interact with the database in your Node.js application
-## <a name="_acogbpunw9ze"></a>**4- Implement Localization** 
-
-### <a name="_8n1jznfo12ax"></a>1. Choose a Localization Strategy:
+### 1. Choose a Localization Strategy:
 Internationalization (i18n): This involves preparing your code and content to be easily adaptable to different languages and regions.
 
 Localization (l10n): This is the process of actually translating your app's content into specific languages and adapting it to cultural nuances.
@@ -893,17 +885,17 @@ In the public folder create public/manifest.json : This file defines the metadat
 
 "name": "Air Transport Permissions",
 
-"short\_name": "AirPerm",
+"short_name": "AirPerm",
 
 "description": "Your description",
 
-"start\_url": "/",
+"start_url": "/",
 
 "display": "standalone", // How the app should be displayed
 
-"background\_color": "#ffffff",
+"background_color": "#ffffff",
 
-"theme\_color": "#007bff",
+"theme_color": "#007bff",
 
 "icons": [
 
@@ -1139,7 +1131,7 @@ const permissionSchema = new Schema({
 
 // ... other fields
 
-supporting\_files: [{ type: String }], // Array to store URLs
+supporting_files: [{ type: String }], // Array to store URLs
 
 });
 
